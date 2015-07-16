@@ -38,7 +38,7 @@ module Trello
   class Card < BasicData
     register_attributes :id, :short_id, :name, :desc, :due, :closed, :url, :short_url,
       :board_id, :member_ids, :list_id, :pos, :last_activity_date, :card_labels,
-      :cover_image_id, :badges, :card_members,
+      :cover_image_id, :badges, :card_members, :check_items, :check_items_checked,
       readonly: [ :id, :short_id, :url, :short_url, :last_activity_date, :badges, :card_members ]
     validates_presence_of :id, :name, :list_id
     validates_length_of   :name,        in: 1..16384
@@ -159,6 +159,8 @@ module Trello
       attributes[:cover_image_id]     = fields[SYMBOL_TO_STRING[:cover_image_id]]
       attributes[:badges]             = fields[SYMBOL_TO_STRING[:badges]]
       attributes[:card_members]       = fields[SYMBOL_TO_STRING[:card_members]]
+      attributes[:check_items]        = fields[SYMBOL_TO_STRING[:check_items]]
+      attributes[:check_item_checked] = fields[SYMBOL_TO_STRING[:check_item_checked]]
       self
     end
 
