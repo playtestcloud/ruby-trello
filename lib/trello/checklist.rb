@@ -103,6 +103,15 @@ module Trello
       client.post("/checklists/#{id}/checkItems", {name: name, checked: checked, pos: position})
     end
 
+    #clones checklist and its items
+    def clone
+      new_checklist = Checklist.create({name: self.name, board_id: self.board_id})
+      self.items.each do |item| 
+        new_checklist.add_item(item.name)
+      end
+      new_checklist
+    end
+
     # Delete a checklist item
     def delete_checklist_item(item_id)
       client.delete("/checklists/#{id}/checkItems/#{item_id}")
