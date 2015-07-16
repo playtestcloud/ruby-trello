@@ -109,7 +109,7 @@ module Trello
       self.items.each do |item| 
         new_checklist.add_item(item.name)
       end
-      new_checklist
+      Checklist.find(new_checklist.id)
     end
 
     # Delete a checklist item
