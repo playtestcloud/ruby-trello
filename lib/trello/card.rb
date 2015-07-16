@@ -63,7 +63,9 @@ module Trello
       last_activity_date: 'dateLastActivity',
       card_labels: 'labels',
       badges: 'badges',
-      card_members: 'members'
+      card_members: 'members',
+      check_items: 'checkItems',
+      check_items_checked: 'checkItemsChecked'
     }
 
     class << self
