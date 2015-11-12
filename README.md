@@ -1,7 +1,8 @@
 # Ruby Trello API
 
-[![Stories in Ready](http://badge.waffle.io/jeremytregunna/ruby-trello.png)](http://waffle.io/jeremytregunna/ruby-trello)  
+[![Stories in Ready](http://badge.waffle.io/jeremytregunna/ruby-trello.png)](http://waffle.io/jeremytregunna/ruby-trello)
 [![Build Status](https://secure.travis-ci.org/jeremytregunna/ruby-trello.png)](http://travis-ci.org/jeremytregunna/ruby-trello) [![Dependency Status](https://gemnasium.com/jeremytregunna/ruby-trello.png)](https://gemnasium.com/jeremytregunna/ruby-trello.png)
+[![Code Climate](https://codeclimate.com/github/jeremytregunna/ruby-trello/badges/gpa.svg)](https://codeclimate.com/github/jeremytregunna/ruby-trello)
 
 This library implements the [Trello](http://www.trello.com/) [API](http://trello.com/api).
 
@@ -19,22 +20,23 @@ Seriously, [check it out](http://www.trello.com/).
 Full Disclosure: This library is mostly complete, if you do find anything missing or not functioning as you expect it
 to, please [let us know](https://trello.com/card/spot-a-bug-report-it/4f092b2ee23cb6fe6d1aaabd/17).
 
-While this library still does function on ruby 1.8 as of version 1.0.2 with activemodel < 4.0, this notice services to
-illustrate that future versions may include ruby 1.9.3+ specific features.
+Supports Ruby 2.0 or newer. Version 1.3.0 is the last version that supports Ruby that is older than 1.9.3. 
 
 ## Configuration
 
-Basic authorization:
+####Basic authorization:
 
-1. Get your API keys from [trello.com/app-key](https://trello.com/app-key).
-2. Visit the URL [trello.com/1/authorize], with the following GET parameters:
-    - `key`: the API key you got in step 1.
-    - `response_type`: "token"
-    - `expiration`: "never" if you don't want your token to ever expire. If you leave this blank,
-       your generated token will expire after 30 days.
-    - The URL will look like this:
-      `https://trello.com/1/authorize?key=YOURAPIKEY&response_type=token&expiration=never`
-3. You should see a page asking you to authorize your Trello application. Click "allow" and you should see a second page with a long alphanumeric string. This is your member token.
+1. Get your API public key from Trello via the irb console:
+
+```
+$ gem install trello
+$ irb -rubygems
+irb> require 'trello'
+irb> Trello.open_public_key_url                         # copy your public key
+irb> Trello.open_authorization_url key: 'yourpublickey' # copy your member token
+```
+
+2. You can now use the public key and member token in your app code:
 
 ```ruby
 require 'trello'
@@ -45,7 +47,7 @@ Trello.configure do |config|
 end
 ```
 
-2-legged OAuth authorization
+####2-legged OAuth authorization
 
 ```ruby
 Trello.configure do |config|
@@ -56,7 +58,7 @@ Trello.configure do |config|
 end
 ```
 
-3-legged OAuth authorization
+####3-legged OAuth authorization
 
 ```ruby
 Trello.configure do |config|
@@ -123,6 +125,6 @@ of refactoring and functionality to be deserving of a beer and this special than
 
 Several ways you can contribute. Documentation, code, tests, feature requests, bug reports.
 
-We develop ruby-trello using [Trello itself](https://trello.com/board/ruby-trello/4f092b2ee23cb6fe6d1aaabd).
+If you submit a pull request that's accepted, you'll be given commit access to this repository.
 
 Please see the `CONTRIBUTING.md` file for more information.
