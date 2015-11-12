@@ -135,6 +135,12 @@ module Trello
       return checklist_copy
     end
 
+    def copy_to_card(card_id)
+      checklist_copy = self.class.create(name: self.name, board_id: self.board_id, card_id: card_id)
+      copy_items_to(checklist_copy)
+      return checklist_copy
+    end
+
     private
     def copy_items_to(another_checklist)
       items.each do |item|
